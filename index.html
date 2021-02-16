@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <title>Vuetify DataTable Fixed Columns</title>
+  <meta charset="utf-8">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+  <style>
+    #app {
+      background-color: lightskyblue;
+    }
+    .title {
+      width: 100%;
+      text-align: center;
+      font-size: x-large;
+    }
+
+    .v-data-table-header th {
+      background-color: lightcyan !important;
+    }
+
+    #dtable th:nth-child(1), #dtable td:nth-child(1),
+    #dtable th:nth-last-child(1), #dtable td:nth-last-child(1),
+    #dtable th:nth-last-child(2), #dtable td:nth-last-child(2)
+    {
+      position: sticky !important;
+      background-color: white;
+    }
+
+    /* Overlay Headers */
+    #dtable th:nth-child(1), #dtable th:nth-last-child(1), #dtable th:nth-last-child(2){
+      z-index: 6 !important;
+    }
+    #dtable td:nth-child(1), #dtable td:nth-last-child(1), #dtable td:nth-last-child(2){
+      z-index: 5 !important;
+    }
+
+
+    /* Fixed Left Column */
+    #dtable th:nth-child(1), #dtable td:nth-child(1) {
+      left: 0 !important;
+      border-right: solid 0.5px rgba(0,0,0,.12);
+    }
+
+    /* Fixed Right Column */
+    #dtable th:nth-last-child(2), #dtable td:nth-last-child(2) {
+      right: 3.55rem !important;
+      border-left: solid 0.5px rgba(0,0,0,.12);
+    }
+    #dtable th:nth-last-child(1), #dtable td:nth-last-child(1) {
+      right: 0 !important;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="main" v-cloak>
+    <v-app>
+      <div class="title">DataTable Fixed Columns</div>
+
+      <v-data-table
+        id = "dtable"
+        :headers = "headers"
+        :items = "items"
+        :height = "$vuetify.breakpoint.height -100"
+        fixed-header
+        >
+
+        <template v-slot:item="props">
+          <tr>
+            <td class="text-center">{{ props.item.no }}</td>
+            <td class="text-center">{{ props.item.item1 }}</td>
+            <td class="text-center">{{ props.item.item2 }}</td>
+            <td class="text-center">{{ props.item.item3 }}</td>
+            <td class="text-center">{{ props.item.item4 }}</td>
+            <td class="text-center">{{ props.item.item5 }}</td>
+            <td class="text-center">{{ props.item.item6 }}</td>
+
+            <!-- Action Buttons -->
+            <td>
+              <v-icon color="indigo" @click="">mdi-pencil</v-icon>
+            </td>
+            <td>
+              <v-icon color="green" @click="">mdi-history</v-icon>
+            </td>
+          </tr>
+        </template>
+      </v-data-table>
+
+    </v-app>
+  </div>
+
+  <!-- Library -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+  <!-- Modules -->
+  <script src="./main.js"></script>
+</body>
+</html>
+
